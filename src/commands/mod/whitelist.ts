@@ -127,7 +127,7 @@ export async function executeRemove(interaction: ChatInputCommandInteraction): P
   const guildId = interaction.guildId!;
   const type = interaction.options.getString('type', true);
   const target = interaction.options.getMentionable('target', true);
-  const targetId = target.id;
+  const targetId = 'id' in target ? target.id : (target as any).user?.id;
 
   if (type === 'role') {
     const removed = removeWhitelistRole(guildId, targetId);
