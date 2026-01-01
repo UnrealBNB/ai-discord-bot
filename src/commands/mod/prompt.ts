@@ -158,7 +158,6 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
 
   const statusLines = allSituations.map((situation) => {
     const isCustom = customSituations.has(situation);
-    const status = isCustom ? 'Custom' : 'Default';
     const icon = isCustom ? '(custom)' : '(default)';
     return `- \`${situation}\` ${icon}`;
   });

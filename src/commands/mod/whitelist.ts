@@ -62,6 +62,7 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
   const guildId = interaction.guildId!;
   const type = interaction.options.getString('type', true);
   const target = interaction.options.getMentionable('target', true);
+  const targetId = target.id;
 
   if (type === 'role') {
     if (!('color' in target)) {
@@ -72,22 +73,22 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
       return;
     }
 
-    const added = addWhitelistRole(guildId, target.id);
+    const added = addWhitelistRole(guildId, targetId);
 
     if (added) {
       logger.info({
         guildId,
-        roleId: target.id,
+        roleId: targetId,
         userId: interaction.user.id,
       }, 'Role whitelisted');
 
       await interaction.reply({
-        content: `Role <@&${target.id}> added to whitelist.`,
+        content: `Role <@&${targetId}> added to whitelist.`,
         ephemeral: true,
       });
     } else {
       await interaction.reply({
-        content: `Role <@&${target.id}> is already whitelisted.`,
+        content: `Role <@&${targetId}> is already whitelisted.`,
         ephemeral: true,
       });
     }
@@ -100,22 +101,22 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
       return;
     }
 
-    const added = addWhitelistUser(guildId, target.id);
+    const added = addWhitelistUser(guildId, targetId);
 
     if (added) {
       logger.info({
         guildId,
-        targetUserId: target.id,
+        targetUserId: targetId,
         userId: interaction.user.id,
       }, 'User whitelisted');
 
       await interaction.reply({
-        content: `User <@${target.id}> added to whitelist.`,
+        content: `User <@${targetId}> added to whitelist.`,
         ephemeral: true,
       });
     } else {
       await interaction.reply({
-        content: `User <@${target.id}> is already whitelisted.`,
+        content: `User <@${targetId}> is already whitelisted.`,
         ephemeral: true,
       });
     }
@@ -126,44 +127,45 @@ export async function executeRemove(interaction: ChatInputCommandInteraction): P
   const guildId = interaction.guildId!;
   const type = interaction.options.getString('type', true);
   const target = interaction.options.getMentionable('target', true);
+  const targetId = target.id;
 
   if (type === 'role') {
-    const removed = removeWhitelistRole(guildId, target.id);
+    const removed = removeWhitelistRole(guildId, targetId);
 
     if (removed) {
       logger.info({
         guildId,
-        roleId: target.id,
+        roleId: targetId,
         userId: interaction.user.id,
       }, 'Role removed from whitelist');
 
       await interaction.reply({
-        content: `Role <@&${target.id}> removed from whitelist.`,
+        content: `Role <@&${targetId}> removed from whitelist.`,
         ephemeral: true,
       });
     } else {
       await interaction.reply({
-        content: `Role <@&${target.id}> was not whitelisted.`,
+        content: `Role <@&${targetId}> was not whitelisted.`,
         ephemeral: true,
       });
     }
   } else {
-    const removed = removeWhitelistUser(guildId, target.id);
+    const removed = removeWhitelistUser(guildId, targetId);
 
     if (removed) {
       logger.info({
         guildId,
-        targetUserId: target.id,
+        targetUserId: targetId,
         userId: interaction.user.id,
       }, 'User removed from whitelist');
 
       await interaction.reply({
-        content: `User <@${target.id}> removed from whitelist.`,
+        content: `User <@${targetId}> removed from whitelist.`,
         ephemeral: true,
       });
     } else {
       await interaction.reply({
-        content: `User <@${target.id}> was not whitelisted.`,
+        content: `User <@${targetId}> was not whitelisted.`,
         ephemeral: true,
       });
     }

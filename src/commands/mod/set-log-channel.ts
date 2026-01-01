@@ -2,7 +2,6 @@ import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
   ChannelType,
-  PermissionFlagsBits,
 } from 'discord.js';
 import { setLogChannel } from '../../db/repositories/guildConfig.js';
 import { createChildLogger } from '../../utils/logger.js';

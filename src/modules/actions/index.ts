@@ -1,8 +1,8 @@
 import type { ButtonInteraction, TextChannel, NewsChannel, GuildMember } from 'discord.js';
-import { timeoutMember, type TimeoutResult } from './timeout.js';
-import { deleteMessageById, type DeleteResult } from './delete.js';
-import { sendWarningDM, type WarnResult } from './warn.js';
-import { logModAction, type LogActionParams } from './auditLogger.js';
+import { timeoutMember } from './timeout.js';
+import { deleteMessageById } from './delete.js';
+import { sendWarningDM } from './warn.js';
+import { logModAction } from './auditLogger.js';
 import { ModActionType, TIMEOUT_DURATIONS } from '../../utils/constants.js';
 import { canTimeout, canDelete } from '../../utils/permissions.js';
 import { buildDisabledButtons } from '../../ui/buttons/actionButtons.js';
