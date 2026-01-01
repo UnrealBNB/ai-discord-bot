@@ -18,7 +18,7 @@ async function deploy() {
     console.log(`Deploying ${commands.length} application commands...`);
 
     const data = await rest.put(
-      Routes.applicationCommands(clientId),
+      Routes.applicationCommands(clientId as string),
       { body: commands },
     );
 

@@ -20,13 +20,19 @@ export async function decodeQRFromBuffer(buffer: Buffer): Promise<QRDecodeResult
     const imageData = new Uint8ClampedArray(width * height * 4);
 
     let idx = 0;
-    image.scan(0, 0, width, height, function (x, y, pixelIdx) {
-      const pixel = Jimp.intToRGBA(this.getPixelColor(x, y));
-      imageData[idx++] = pixel.r;
-      imageData[idx++] = pixel.g;
-      imageData[idx++] = pixel.b;
-      imageData[idx++] = pixel.a;
-    });
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const color = image.getPixelColor(x, y);
+        const r = (color >> 24) & 0xff;
+        const g = (color >> 16) & 0xff;
+        const b = (color >> 8) & 0xff;
+        const a = color & 0xff;
+        imageData[idx++] = r;
+        imageData[idx++] = g;
+        imageData[idx++] = b;
+        imageData[idx++] = a;
+      }
+    }
 
     const code = jsQR(imageData, width, height, {
       inversionAttempts: 'attemptBoth',

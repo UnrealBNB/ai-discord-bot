@@ -4,8 +4,7 @@ import { getLogChannelId, isAutoModeEnabled } from '../db/repositories/guildConf
 import { buildModLogEmbed } from '../ui/embeds/modLogEmbed.js';
 import { buildActionButtons } from '../ui/buttons/actionButtons.js';
 import { shouldAutoAct } from '../services/gemini/schemaValidator.js';
-import { executeAction } from '../modules/actions/index.js';
-import { ModActionType, ActionType } from '../utils/constants.js';
+import { ActionType } from '../utils/constants.js';
 import { createChildLogger } from '../utils/logger.js';
 
 const logger = createChildLogger('messageCreate');

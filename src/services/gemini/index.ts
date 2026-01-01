@@ -8,7 +8,6 @@ import {
   validateGeminiResponse,
   FAILURE_RESPONSE,
   type GeminiResponse,
-  type ValidationResult,
 } from './schemaValidator.js';
 
 const logger = createChildLogger('gemini');

@@ -1,6 +1,6 @@
 import type { Attachment } from 'discord.js';
-import { downloadAttachment, type DownloadResult } from './imageDownloader.js';
-import { decodeQRFromBuffer, type QRDecodeResult } from './decoder.js';
+import { downloadAttachment } from './imageDownloader.js';
+import { decodeQRFromBuffer } from './decoder.js';
 import { createChildLogger } from '../../utils/logger.js';
 
 const logger = createChildLogger('qr');

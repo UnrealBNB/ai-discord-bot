@@ -1,4 +1,4 @@
-import type { Message, GuildMember } from 'discord.js';
+import type { Message } from 'discord.js';
 import { createChildLogger } from '../../utils/logger.js';
 import { isScanEnabled, getLogChannelId } from '../../db/repositories/guildConfig.js';
 import { isWhitelisted } from '../../db/repositories/whitelist.js';

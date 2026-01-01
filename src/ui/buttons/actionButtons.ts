@@ -76,7 +76,7 @@ export function buildDisabledButtons(
   targetUserId: string,
   executedAction: ModActionType,
 ): ActionRowBuilder<MessageActionRowComponentBuilder>[] {
-  const createButton = (action: ModActionType, label: string, style: ButtonStyle) => {
+  const createButton = (action: ModActionType, label: string, _style: ButtonStyle) => {
     const isExecuted = action === executedAction;
     return new ButtonBuilder()
       .setCustomId(encodeButtonCustomId({ action, messageId, channelId, targetUserId }))
