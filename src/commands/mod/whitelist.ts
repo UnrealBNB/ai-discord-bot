@@ -1,6 +1,7 @@
 import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
+  MessageFlags,
 } from 'discord.js';
 import {
   addWhitelistRole,
@@ -68,7 +69,7 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
     if (!('color' in target)) {
       await interaction.reply({
         content: 'Please mention a role, not a user.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
       return;
     }
@@ -84,19 +85,19 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
 
       await interaction.reply({
         content: `Role <@&${targetId}> added to whitelist.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       await interaction.reply({
         content: `Role <@&${targetId}> is already whitelisted.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
   } else {
     if ('color' in target) {
       await interaction.reply({
         content: 'Please mention a user, not a role.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
       return;
     }
@@ -112,12 +113,12 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
 
       await interaction.reply({
         content: `User <@${targetId}> added to whitelist.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       await interaction.reply({
         content: `User <@${targetId}> is already whitelisted.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
   }
@@ -141,12 +142,12 @@ export async function executeRemove(interaction: ChatInputCommandInteraction): P
 
       await interaction.reply({
         content: `Role <@&${targetId}> removed from whitelist.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       await interaction.reply({
         content: `Role <@&${targetId}> was not whitelisted.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
   } else {
@@ -161,12 +162,12 @@ export async function executeRemove(interaction: ChatInputCommandInteraction): P
 
       await interaction.reply({
         content: `User <@${targetId}> removed from whitelist.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       await interaction.reply({
         content: `User <@${targetId}> was not whitelisted.`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
   }
@@ -181,7 +182,7 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
   if (roles.length === 0 && users.length === 0) {
     await interaction.reply({
       content: 'No roles or users are whitelisted.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -196,6 +197,6 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
 
   await interaction.reply({
     content: `**Whitelist**\n\n${roleList}\n\n${userList}`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }

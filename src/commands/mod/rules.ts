@@ -1,6 +1,7 @@
 import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
+  MessageFlags,
 } from 'discord.js';
 import {
   createRule,
@@ -83,7 +84,7 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
   if (!validation.valid) {
     await interaction.reply({
       content: `Invalid regex pattern: ${validation.error}`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -92,7 +93,7 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
   if (existing) {
     await interaction.reply({
       content: `A rule with name \`${name}\` already exists.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -115,7 +116,7 @@ export async function executeAdd(interaction: ChatInputCommandInteraction): Prom
 
   await interaction.reply({
     content: `Rule \`${name}\` created with ID ${id}.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
 
@@ -134,12 +135,12 @@ export async function executeRemove(interaction: ChatInputCommandInteraction): P
 
     await interaction.reply({
       content: `Rule \`${name}\` removed.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   } else {
     await interaction.reply({
       content: `No rule found with name \`${name}\`.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   }
 }
@@ -151,7 +152,7 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
   if (rules.length === 0) {
     await interaction.reply({
       content: 'No rules configured.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -166,6 +167,6 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
 
   await interaction.reply({
     content: `**Moderation Rules (${rules.length})**\n${ruleList}${footer}`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }

@@ -1,4 +1,4 @@
-import type { Interaction, ChatInputCommandInteraction, ButtonInteraction } from 'discord.js';
+import { type Interaction, type ChatInputCommandInteraction, type ButtonInteraction, MessageFlags } from 'discord.js';
 import { handleCommand } from '../commands/index.js';
 import { decodeButtonCustomId } from '../ui/buttons/actionButtons.js';
 import { executeAction } from '../modules/actions/index.js';
@@ -21,7 +21,7 @@ export async function handleInteractionCreate(interaction: Interaction): Promise
       try {
         await interaction.reply({
           content: 'An error occurred while processing your request.',
-          ephemeral: true,
+          flags: MessageFlags.Ephemeral,
         });
       } catch {
         // Ignore reply errors
@@ -80,7 +80,7 @@ async function handleButtonInteraction(interaction: ButtonInteraction): Promise<
     try {
       await interaction.followUp({
         content: `Action failed: ${result.error}`,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } catch {
       // Ignore followUp errors

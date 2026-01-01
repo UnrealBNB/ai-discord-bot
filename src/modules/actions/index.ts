@@ -1,4 +1,4 @@
-import type { ButtonInteraction, TextChannel, NewsChannel, GuildMember } from 'discord.js';
+import { type ButtonInteraction, type TextChannel, type NewsChannel, type GuildMember, MessageFlags } from 'discord.js';
 import { timeoutMember } from './timeout.js';
 import { deleteMessageById } from './delete.js';
 import { sendWarningDM } from './warn.js';
@@ -147,7 +147,7 @@ export async function executeAction(
     try {
       await interaction.followUp({
         embeds: [confirmEmbed],
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } catch {
       // Ignore followUp errors

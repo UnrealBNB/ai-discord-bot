@@ -1,6 +1,7 @@
 import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
+  MessageFlags,
 } from 'discord.js';
 import { setAutoModeEnabled, isAutoModeEnabled } from '../../db/repositories/guildConfig.js';
 import { createChildLogger } from '../../utils/logger.js';
@@ -31,7 +32,7 @@ export async function executeEnable(interaction: ChatInputCommandInteraction): P
 
   await interaction.reply({
     content: `**Warning:** Auto-mode is now **enabled**.\n\nThe bot will automatically take action on high-confidence violations (score >= 80, confidence >= 85%, low false positive risk).\n\nUse with caution. Review logs regularly to ensure accuracy.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
 
@@ -47,7 +48,7 @@ export async function executeDisable(interaction: ChatInputCommandInteraction): 
 
   await interaction.reply({
     content: 'Auto-mode is now **disabled**. All moderation actions require manual approval.',
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
 
@@ -57,6 +58,6 @@ export async function executeStatus(interaction: ChatInputCommandInteraction): P
 
   await interaction.reply({
     content: `Auto-mode is currently **${enabled ? 'enabled' : 'disabled'}**.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }

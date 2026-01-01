@@ -2,6 +2,7 @@ import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
   EmbedBuilder,
+  MessageFlags,
 } from 'discord.js';
 import {
   setSituationPrompt,
@@ -70,7 +71,7 @@ export async function executeSet(interaction: ChatInputCommandInteraction): Prom
   if (promptText.length < 50) {
     await interaction.reply({
       content: 'Prompt is too short. Please provide at least 50 characters.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -86,7 +87,7 @@ export async function executeSet(interaction: ChatInputCommandInteraction): Prom
 
   await interaction.reply({
     content: `Custom prompt for \`${situation}\` has been set.\n\n**Note:** The JSON output enforcement is automatically appended to your prompt.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
 
@@ -119,7 +120,7 @@ export async function executeView(interaction: ChatInputCommandInteraction): Pro
 
   await interaction.reply({
     embeds: [embed],
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
 
@@ -138,12 +139,12 @@ export async function executeReset(interaction: ChatInputCommandInteraction): Pr
 
     await interaction.reply({
       content: `Prompt for \`${situation}\` has been reset to the default.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   } else {
     await interaction.reply({
       content: `Prompt for \`${situation}\` is already using the default.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   }
 }
@@ -173,6 +174,6 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
 
   await interaction.reply({
     embeds: [embed],
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }

@@ -2,6 +2,7 @@ import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
   ChannelType,
+  MessageFlags,
 } from 'discord.js';
 import {
   setChannelPolicy,
@@ -82,7 +83,7 @@ export async function executeSet(interaction: ChatInputCommandInteraction): Prom
     } catch {
       await interaction.reply({
         content: 'Invalid JSON in options. Please provide valid JSON.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
       return;
     }
@@ -99,7 +100,7 @@ export async function executeSet(interaction: ChatInputCommandInteraction): Prom
 
   await interaction.reply({
     content: `Policy \`${policyType}\` set for <#${channel.id}>.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
 
@@ -120,12 +121,12 @@ export async function executeRemove(interaction: ChatInputCommandInteraction): P
 
     await interaction.reply({
       content: `Policy \`${policyType}\` removed from <#${channel.id}>.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   } else {
     await interaction.reply({
       content: `No policy \`${policyType}\` found for <#${channel.id}>.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   }
 }
@@ -148,7 +149,7 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
   if (policies.length === 0) {
     await interaction.reply({
       content: `${title}:\nNo policies configured.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -160,6 +161,6 @@ export async function executeList(interaction: ChatInputCommandInteraction): Pro
 
   await interaction.reply({
     content: `${title}:\n${policyList}`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }

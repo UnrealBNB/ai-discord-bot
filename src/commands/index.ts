@@ -3,6 +3,7 @@ import {
   PermissionFlagsBits,
   type ChatInputCommandInteraction,
   type RESTPostAPIChatInputApplicationCommandsJSONBody,
+  MessageFlags,
 } from 'discord.js';
 
 import * as setLogChannel from './mod/set-log-channel.js';
@@ -193,12 +194,12 @@ export async function handleCommand(interaction: ChatInputCommandInteraction): P
     if (!interaction.replied && !interaction.deferred) {
       await interaction.reply({
         content: 'An error occurred while executing this command.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       await interaction.followUp({
         content: 'An error occurred while executing this command.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
   }

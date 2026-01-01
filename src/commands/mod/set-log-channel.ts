@@ -2,6 +2,7 @@ import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
   ChannelType,
+  MessageFlags,
 } from 'discord.js';
 import { setLogChannel } from '../../db/repositories/guildConfig.js';
 import { createChildLogger } from '../../utils/logger.js';
@@ -33,6 +34,6 @@ export async function execute(interaction: ChatInputCommandInteraction): Promise
 
   await interaction.reply({
     content: `Moderation log channel set to <#${channel.id}>.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }

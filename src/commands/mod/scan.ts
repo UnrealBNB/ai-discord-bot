@@ -1,6 +1,7 @@
 import {
   SlashCommandSubcommandBuilder,
   type ChatInputCommandInteraction,
+  MessageFlags,
 } from 'discord.js';
 import { setScanEnabled, isScanEnabled, getLogChannelId } from '../../db/repositories/guildConfig.js';
 import { createChildLogger } from '../../utils/logger.js';
@@ -26,7 +27,7 @@ export async function executeEnable(interaction: ChatInputCommandInteraction): P
   if (!logChannelId) {
     await interaction.reply({
       content: 'Please set a log channel first using `/mod set-log-channel`.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }

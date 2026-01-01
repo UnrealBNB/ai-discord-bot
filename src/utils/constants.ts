@@ -53,7 +53,23 @@ export type GeminiCategory = (typeof GEMINI_CATEGORIES)[number];
 export const FALSE_POSITIVE_RISK = ['low', 'medium', 'high'] as const;
 export type FalsePositiveRisk = (typeof FALSE_POSITIVE_RISK)[number];
 
-export const EVIDENCE_TYPES = ['pattern', 'url', 'qr', 'keyword', 'behavior'] as const;
+export const EVIDENCE_TYPES = [
+  'pattern',
+  'url',
+  'qr',
+  'keyword',
+  'behavior',
+  'monetary_value',
+  'currency',
+  'text',
+  'link',
+  'mention',
+  'attachment',
+  'context',
+  'phrase',
+  'symbol',
+  'other',
+] as const;
 export type EvidenceType = (typeof EVIDENCE_TYPES)[number];
 
 export const DEDUPE_CACHE_TTL_MS = 60 * 1000;

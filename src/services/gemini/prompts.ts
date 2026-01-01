@@ -7,7 +7,7 @@ export const JSON_SCHEMA_DEFINITION = `{
   "recommended_action": "<one of: none, log_only, warn_dm, delete, timeout, timeout_and_delete>",
   "confidence": <number 0.0-1.0>,
   "false_positive_risk": "<one of: low, medium, high>",
-  "evidence": [{"type": "<pattern|url|qr|keyword|behavior>", "value": "<string>"}]
+  "evidence": [{"type": "<pattern|url|qr|keyword|behavior|monetary_value|currency|text|link|mention|context|phrase|other>", "value": "<string>"}]
 }`;
 
 export const DEFAULT_PROMPTS: Record<SituationType, string> = {
@@ -107,7 +107,7 @@ Fill in appropriate values:
 - recommended_action: one of none, log_only, warn_dm, delete, timeout, timeout_and_delete
 - confidence: 0.0-1.0
 - false_positive_risk: low, medium, or high
-- evidence: array of detected patterns/urls/keywords`;
+- evidence: array of objects with type (pattern|url|qr|keyword|behavior|monetary_value|currency|text|other) and value (string)`;
 
 export const JSON_ENFORCEMENT_SUFFIX = `
 
