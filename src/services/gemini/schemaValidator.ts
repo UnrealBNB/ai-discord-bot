@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { GEMINI_CATEGORIES, EVIDENCE_TYPES, FALSE_POSITIVE_RISK, ActionType } from '../../utils/constants.js';
+import { GEMINI_CATEGORIES, FALSE_POSITIVE_RISK, ActionType } from '../../utils/constants.js';
 
 export const EvidenceSchema = z.object({
-  type: z.enum(EVIDENCE_TYPES),
+  type: z.string().max(50),  // Allow any string - LLMs are creative with types
   value: z.string().max(1000),
 });
 
