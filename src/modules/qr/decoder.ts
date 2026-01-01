@@ -1,4 +1,5 @@
-import jsQR from 'jsqr';
+import jsQRModule from 'jsqr';
+const jsQR = (jsQRModule as any).default || jsQRModule;
 import { Jimp } from 'jimp';
 import { createChildLogger } from '../../utils/logger.js';
 
