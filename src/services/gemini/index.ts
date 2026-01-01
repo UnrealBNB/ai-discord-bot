@@ -22,6 +22,9 @@ const DEFAULT_GENERATION_CONFIG: GenerationConfig = {
 };
 
 export function initGemini(): void {
+  if (!config.GEMINI_API_KEY) {
+    throw new Error('GEMINI_API_KEY is required when using Gemini provider');
+  }
   genAI = new GoogleGenerativeAI(config.GEMINI_API_KEY);
   model = genAI.getGenerativeModel({
     model: config.GEMINI_MODEL,
