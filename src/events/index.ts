@@ -8,7 +8,7 @@ import { createChildLogger } from '../utils/logger.js';
 const logger = createChildLogger('events');
 
 export function registerEvents(client: Client): void {
-  client.once('ready', (readyClient) => {
+  client.once('clientReady', (readyClient) => {
     handleReady(readyClient);
   });
 
