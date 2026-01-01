@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { Client, GatewayIntentBits, Partials } from 'discord.js';
 import { config } from './config.js';
 import { initDatabase, closeDatabase } from './db/index.js';
-import { initGemini, testConnection } from './services/gemini/index.js';
+import { initLLM, testConnection, getProvider } from './services/llm/index.js';
 import { initQueue } from './services/queue/index.js';
 import { registerEvents } from './events/index.js';
 import { createChildLogger } from './utils/logger.js';
@@ -15,14 +15,14 @@ async function main() {
   initDatabase(config.DATABASE_PATH);
   logger.info('Database initialized');
 
-  initGemini();
-  logger.info('Gemini client initialized');
+  await initLLM();
+  logger.info({ provider: getProvider() }, 'LLM client initialized');
 
-  const geminiOk = await testConnection();
-  if (!geminiOk) {
-    logger.warn('Gemini connection test failed - API may be unavailable');
+  const llmOk = await testConnection();
+  if (!llmOk) {
+    logger.warn({ provider: getProvider() }, 'LLM connection test failed - API may be unavailable');
   } else {
-    logger.info('Gemini connection verified');
+    logger.info({ provider: getProvider() }, 'LLM connection verified');
   }
 
   initQueue(config.MAX_CONCURRENCY, config.MAX_QUEUE_SIZE);

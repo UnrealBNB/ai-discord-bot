@@ -6,7 +6,7 @@ import {
   QUEUE_RETRY_BASE_DELAY_MS,
   QUEUE_RETRY_MAX_DELAY_MS,
 } from '../../utils/constants.js';
-import { scanMessage, type ScanRequest, type ScanResult } from '../gemini/index.js';
+import { scanMessage, type ScanRequest, type ScanResult } from '../llm/index.js';
 import { FAILURE_RESPONSE } from '../gemini/schemaValidator.js';
 
 const logger = createChildLogger('queue');
